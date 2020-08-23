@@ -1,0 +1,31 @@
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    server_name ocvt.club;
+
+    # ssl conf
+    include /config/nginx/ssl.conf;
+
+    client_max_body_size 1M;
+
+    # Proxy main site
+    location / {
+				proxy_pass http://ocvt-site:4000;
+    }
+}
+
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    server_name api.ocvt.club;
+
+    # ssl conf
+    include /config/nginx/ssl.conf;
+
+    client_max_body_size 1M;
+
+    # Proxy main site
+    location / {
+				proxy_pass http://ocvt-api:3000;
+    }
+}

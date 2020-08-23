@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: linuxserver/swag:1.3.0-ls110
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=US/Eastern
+      - URL=ocvt.club
+      - SUBDOMAINS=www,api
+      - VALIDATION=http
+    ports:
+      - 443:443
+      - 80:80
+    networks:
+      - ocvt-net
+
+  ocvt-api:
+    image: docker.pkg.github.com/ocvt/dolabra:latest
+    restart: unless-stopped
+    env_file: dolabra.env
+    networks:
+      - ocvt-net
+
+  ocvt-site:
+    image: docker.pkg.github.com/ocvt/ocvt-site:latest
+    restart: unless-stopped
+    env_file: ocvt-site.env
+    networks:
+      - ocvt-net

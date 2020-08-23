@@ -1,0 +1,42 @@
+---
+# Common
+- hosts: ocvt-main
+  become: yes
+  handlers:
+    - import_tasks: handlers.yml
+  tasks:
+    - name: Install required packages
+      yum:
+        name:
+          - yum-cron #TODO set yum-cron.conf + enable yum-cron service
+          - tmux
+          - vim
+        update_cache: yes
+
+    - name: Install Docker
+      command:
+        cmd: amazon-linux-extras install -y docker
+        creates: /usr/bin/docker
+      notify: Start and enable docker
+
+    - name: Add ec2-user to docker group
+      user:
+        name: ec2-user
+        groups: docker
+        append: yes
+
+    - name: Install docker-compose
+      command:
+        cmd: curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+        creates: /usr/local/bin/docker-compose
+        warn: false
+
+    - name: Set docker-compose permissions
+      file:
+        path: /usr/local/bin/docker-compose
+        owner: root
+        group: root
+        mode: '0755'
+
+    - debug:
+        msg: Clone docker repo to start services

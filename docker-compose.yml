@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   nginx:
-    image: linuxserver/swag:1.3.0-ls110
+    image: linuxserver/swag:1.7.0-ls7
     restart: unless-stopped
     environment:
       - PUID=1000
@@ -30,3 +30,6 @@ services:
     env_file: ocvt-site.env
     networks:
       - ocvt-net
+
+networks:
+  ocvt-net:

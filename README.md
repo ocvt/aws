@@ -45,3 +45,8 @@ Host pineswamp
 4. Set the environment variables
 5. Run `docker-compose up -d` to start the services
 6. TODO configure backups
+
+### Docker Hub / Github Config to manage images
+
+- New docker images for ocvt/ocvt-site and ocvt/dolabra are created on each new release via Github Actions (look at the workflow file)
+- Docker Hub username & password is stored in GH Secrets

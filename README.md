@@ -30,6 +30,7 @@ OCVT's deployment configuration, mainly centered around docker.
 7. Finally, create a new `t3a.micro` instance with Amazon Linux 2, ensuring the security group from step 6 is used, public IPs are assigned, and the `ocvt-dev-key` SSH key name is used
 8. Create a new Elastic IP named `ocvt-eip` and associate it with the instance created in step 7
 9. Create an A & AAAA record for pineswamp.ocvt.club and ocvt.club pointing to that instance, and create CNAME records for www.ocvt.club, api.ocvt.club, and api-dev.ozmo.club pointing to pineswamp.ocvt.club
+10. Ensure IPv6 is working: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-migrate-ipv6.html#ipv6-dhcpv6-amazon-linux
 
 ### Setup the server
 

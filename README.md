@@ -1,4 +1,4 @@
-# docker
+# aws
 
 OCVT's deployment configuration, mainly centered around docker.
 

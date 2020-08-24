@@ -6,14 +6,15 @@ OCVT's deployment configuration, mainly centered around docker.
 ## Deploying a new version of any image
 
 1. Publish a new release to create a new image tag
-2. Update `docker-compose.yml` with the new tag
-3. On the server, run `docker-compose down && docker-compose up -d`
+2. Update `launch.sh` with the new tag
+3. On the server, run `./launch down && ./launch up`
 
 
 ## Testing
 
 1. Build images locally to create the `latest` tag
 2. Run `docker-compose up -f docker-compose.dev.yml`
+3. TODO
 
 
 ## Initial AWS / server configuration
@@ -27,7 +28,8 @@ OCVT's deployment configuration, mainly centered around docker.
 5. Add rules to the route table so that `0.0.0.0/0` and `::0/0` are both routed to the Internet Gateway from step 4
 6. Create a new security group named `ocvt-sg` allowing SSH, HTTP, and HTTPS traffic from `0.0.0.0/0` and `::0/0`
 7. Finally, create a new `t3a.micro` instance with Amazon Linux 2, ensuring the security group from step 6 is used, public IPs are assigned, and the `ocvt-dev-key` SSH key name is used
-8. Create an A & AAAA record for pineswamp.ocvt.club and ocvt.club pointing to that instance, and create CNAME records for www.ocvt.club, api.ocvt.club, and api-dev.ozmo.club pointing to pineswamp.ocvt.club
+8. Create a new Elastic IP named `ocvt-eip` and associate it with the instance created in step 7
+9. Create an A & AAAA record for pineswamp.ocvt.club and ocvt.club pointing to that instance, and create CNAME records for www.ocvt.club, api.ocvt.club, and api-dev.ozmo.club pointing to pineswamp.ocvt.club
 
 ### Setup the server
 
@@ -43,7 +45,7 @@ Host pineswamp
 2. Run `ansible-playbook ansible/main.yml -i ansible/hosts.cfg` to install required packages on the host
 3. Clone this repository to the server
 4. Set the environment variables
-5. Run `docker-compose up -d` to start the services
+5. Run `./launch up` to start the services
 6. TODO configure backups
 
 ### Docker Hub / Github Config to manage images

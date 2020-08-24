@@ -32,6 +32,6 @@ server {
 
     # Proxy main site
     location / {
-      proxy_pass http://docker_ocvt-site_1:4000;
+      proxy_pass http://ocvt-site:4000;
     }
 }

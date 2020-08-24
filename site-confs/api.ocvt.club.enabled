@@ -1,0 +1,25 @@
+# Redirect HTTP to HTTPS
+server {
+    listen 80;
+    listen [::]:80;
+    server_name api.ocvt.club;
+    
+    return 301 https://api.ocvt.club;
+}
+
+# Main config
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    server_name api.ocvt.club;
+
+    # ssl conf
+    include /config/nginx/ssl.conf;
+
+    client_max_body_size 1M;
+
+    # Proxy main site
+    location / {
+      proxy_pass http://docker_ocvt-api_1:3000;
+    }
+}

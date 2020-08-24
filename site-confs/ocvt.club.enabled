@@ -1,3 +1,25 @@
+# Redirect HTTP to HTTPS
+server {
+    listen 80;
+    listen [::]:80;
+    server_name ocvt.club www.ocvt.club;
+
+    return 301 https://ocvt.club;
+}
+
+# Redirect HTTPS www.ocvt.club to ocvt.club
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    server_name www.ocvt.club;
+
+    # ssl conf
+    include /config/nginx/ssl.conf;
+
+    return 301 https://ocvt.club;
+}
+
+# Main config
 server {
     listen 443 ssl;
     listen [::]:443 ssl;
@@ -10,22 +32,6 @@ server {
 
     # Proxy main site
     location / {
-				proxy_pass http://ocvt-site:4000;
-    }
-}
-
-server {
-    listen 443 ssl;
-    listen [::]:443 ssl;
-    server_name api.ocvt.club;
-
-    # ssl conf
-    include /config/nginx/ssl.conf;
-
-    client_max_body_size 1M;
-
-    # Proxy main site
-    location / {
-				proxy_pass http://ocvt-api:3000;
+      proxy_pass http://docker_ocvt-site_1:4000;
     }
 }

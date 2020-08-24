@@ -1,4 +1,4 @@
-version: '3.8'
+version: '2'
 
 services:
   nginx:
@@ -11,6 +11,10 @@ services:
       - URL=ocvt.club
       - SUBDOMAINS=www,api
       - VALIDATION=http
+      - STAGING=true
+    volumes:
+      - ./nginx.conf:/config/nginx/nginx.conf:ro
+      - ./site-confs:/config/nginx/site-confs:ro
     ports:
       - 443:443
       - 80:80
@@ -18,14 +22,16 @@ services:
       - ocvt-net
 
   ocvt-api:
-    image: docker.pkg.github.com/ocvt/dolabra:latest
+    image: ocvt/dolabra:1.0.1
     restart: unless-stopped
     env_file: dolabra.env
+    volumes:
+      - ./data:/go/src/app/data:rw
     networks:
       - ocvt-net
 
   ocvt-site:
-    image: docker.pkg.github.com/ocvt/ocvt-site:latest
+    image: ocvt/ocvt-site:1.0.1
     restart: unless-stopped
     env_file: ocvt-site.env
     networks:

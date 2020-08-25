@@ -46,5 +46,8 @@ down () {
   docker rm -f nginx ocvt-api ocvt-site
 }
 
+logs () {
+  sudo su -c 'multitail --mergeall /var/lib/docker/containers/*/*.log'
+}
 
 $@

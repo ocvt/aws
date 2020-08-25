@@ -5,12 +5,18 @@
   handlers:
     - import_tasks: handlers.yml
   tasks:
+    - name: Install epel-release
+      yum:
+        name: epel-release
+        update_cache: yes
+
     - name: Install required packages
       yum:
         name:
-          - yum-cron #TODO set yum-cron.conf + enable yum-cron service
+          - multilog
           - tmux
           - vim
+          - yum-cron #TODO set yum-cron.conf + enable yum-cron service
         update_cache: yes
 
     - name: Install Docker

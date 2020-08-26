@@ -15,7 +15,6 @@ up () {
     --env URL=ocvt.club \
     --env SUBDOMAINS=www,api \
     --env VALIDATION=http \
-    --env STAGING=true \
     --volume $PWD/nginx.conf:/config/nginx/nginx.conf:ro \
     --volume $PWD/site-confs:/config/nginx/site-confs:ro \
     --publish 443:443 \
@@ -30,7 +29,7 @@ up () {
     --env-file $PWD/dolabra.env \
     --volume $PWD/data:/go/src/app/data:rw \
     --network ocvt-net \
-    ocvt/dolabra:1.0.1
+    ocvt/dolabra:1.0.4
   
   docker run \
     --name ocvt-site \

@@ -34,4 +34,13 @@ server {
     location / {
       proxy_pass http://ocvt-site:4000;
     }
+
+    # Proxy media
+    location /media {
+        access_log off;
+        proxy_pass http://ocvt-site:4000;
+        proxy_cache ocvt-cache;
+        proxy_cache_valid any 30d;
+    }
+
 }

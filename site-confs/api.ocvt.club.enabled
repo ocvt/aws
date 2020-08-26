@@ -20,6 +20,14 @@ server {
 
     # Proxy main site
     location / {
-      proxy_pass http://ocvt-api:3000;
+        proxy_pass http://ocvt-api:3000;
+    }
+
+    # Proxy photos
+    location /photo {
+        access_log off;
+        proxy_pass http://ocvt-api:3000;
+        proxy_cache ocvt-cache;
+        proxy_cache_valid any 30d;
     }
 }

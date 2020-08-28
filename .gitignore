@@ -1,2 +1,4 @@
 data/
 *.env
+goatcounter/goatcounter.log
+goatcounter/goatcounter.sqlite3

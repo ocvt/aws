@@ -13,6 +13,7 @@
     - name: Install required packages
       yum:
         name:
+          - htop
           - multilog
           - tmux
           - vim

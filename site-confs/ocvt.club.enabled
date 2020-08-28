@@ -4,7 +4,7 @@ server {
     listen [::]:80;
     server_name ocvt.club www.ocvt.club;
 
-    return 301 https://ocvt.club;
+    return 301 https://ocvt.club$request_uri;
 }
 
 # Redirect HTTPS www.ocvt.club to ocvt.club
@@ -16,7 +16,7 @@ server {
     # ssl conf
     include /config/nginx/ssl.conf;
 
-    return 301 https://ocvt.club;
+    return 301 https://ocvt.club$request_uri;
 }
 
 # Main config
@@ -43,4 +43,8 @@ server {
         proxy_cache_valid any 30d;
     }
 
+    # Proxy goatcounter
+    location /stats {
+        proxy_pass http://host.docker.internal:8081;
+    }
 }

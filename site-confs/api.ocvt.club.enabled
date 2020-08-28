@@ -4,7 +4,7 @@ server {
     listen [::]:80;
     server_name api.ocvt.club;
     
-    return 301 https://api.ocvt.club;
+    return 301 https://api.ocvt.club$request_uri;
 }
 
 # Main config

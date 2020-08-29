@@ -10,13 +10,6 @@ OCVT's deployment configuration, mainly centered around docker.
 3. On the server, run `./launch down && ./launch up`
 
 
-## Testing
-
-1. Build images locally to create the `latest` tag
-2. Run `docker-compose up -f docker-compose.dev.yml`
-3. TODO
-
-
 ## Initial AWS / server configuration
 
 ### AWS

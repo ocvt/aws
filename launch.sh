@@ -30,7 +30,7 @@ up () {
     --env-file $PWD/dolabra.env \
     --volume $PWD/data:/go/src/app/data:rw \
     --network ocvt-net \
-    ocvt/dolabra:1.0.5
+    ocvt/dolabra:1.0.6
   
   docker run \
     --name ocvt-site \
@@ -38,9 +38,11 @@ up () {
     --restart unless-stopped \
     --env-file $PWD/ocvt-site.env \
     --network ocvt-net \
-    ocvt/ocvt-site:1.0.5
+    ocvt/ocvt-site:1.0.7
 
   nohup ./goatcounter/goatcounter-v1.4.0-linux-amd64 serve -db sqlite://goatcounter/goatcounter.sqlite3 -listen :8081 -tls none >> ./goatcounter/goatcounter.log 2>&1 &
+
+  docker system prune -a
 }
 
 down () {

@@ -31,6 +31,15 @@ OCVT's deployment configuration, mainly centered around docker.
 8. Create a new Elastic IP named `ocvt-eip` and associate it with the instance created in step 7
 9. Create an A & AAAA record for pineswamp.ocvt.club and ocvt.club pointing to that instance, and create CNAME records for www.ocvt.club, api.ocvt.club, and api-dev.ozmo.club pointing to pineswamp.ocvt.club
 10. Ensure IPv6 is working: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-migrate-ipv6.html#ipv6-dhcpv6-amazon-linux
+11. In the Lifecycle Manager, create a snapshot policy to backup the instance every Monday at 08:00 UTC (4am EDT)
+
+### DNS
+
+Create the following DNS records:
+
+* @, pineswamp  -> A & AAAA -> IP of AWS instance
+* api, www, stats -> CNAME -> pineswamp.ocvt.club.
+* status -> CNAME -> stats.uptimerobot.com.
 
 ### Setup the server
 
@@ -46,10 +55,13 @@ Host pineswamp
 2. Run `ansible-playbook ansible/main.yml -i ansible/hosts.cfg` to install required packages on the host
 3. Clone this repository to the server
 4. Set the environment variables
-5. Run `./launch up` to start the services
-6. TODO configure backups
+5. Run `./launch up` to start the services. Launches nginx (proxy and image cache), the html site, the api, and goatcounter (an analytics service).
 
 ### Docker Hub / Github Config to manage images
 
 - New docker images for ocvt/ocvt-site and ocvt/dolabra are created on each new release via Github Actions (look at the workflow file)
 - Docker Hub username & password is stored in GH Secrets
+
+### Uptime Robot
+
+Configure uptime robot to do a check against https://ocvt.club and https://api.ocvt.club/healthcheck

@@ -14,7 +14,7 @@
       yum:
         name:
           - htop
-          - multilog
+          - multitail
           - tmux
           - vim
           - yum-cron #TODO set yum-cron.conf + enable yum-cron service

@@ -1,4 +1,3 @@
 data/
+nginx-config/
 *.env
-goatcounter/goatcounter.log
-goatcounter/goatcounter.sqlite3

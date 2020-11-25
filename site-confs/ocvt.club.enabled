@@ -42,9 +42,4 @@ server {
         proxy_cache ocvt-cache;
         proxy_cache_valid any 30d;
     }
-
-    # Proxy goatcounter
-    location /stats {
-        proxy_pass http://host.docker.internal:8081;
-    }
 }

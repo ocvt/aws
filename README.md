@@ -12,9 +12,7 @@ OCVT's deployment configuration, mainly centered around docker.
 
 ## Testing
 
-1. Build images locally to create the `latest` tag
-1. Run `docker-compose up -f docker-compose.dev.yml`
-1. TODO
+1. Run `./launch.sh build && ./launch.sh up` to build and start a local build
 
 
 ## Initial AWS / server configuration
@@ -38,8 +36,10 @@ OCVT's deployment configuration, mainly centered around docker.
 Create the following DNS records:
 
 - @, pineswamp  -> A & AAAA -> IP of AWS instance
-- api, www, stats -> CNAME -> pineswamp.ocvt.club.
+- api, www -> CNAME -> pineswamp.ocvt.club.
 - status -> CNAME -> stats.uptimerobot.com.
+
+*Note*: If the EC2 instance is terminated for whatever reason, the IPv6 address will have to be set again because AWS does not support IPv6 elastic IPs.
 
 ### Setup the server
 

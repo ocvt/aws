@@ -15,6 +15,7 @@ up () {
     --env URL=ocvt.club \
     --env SUBDOMAINS=www,api \
     --env VALIDATION=http \
+    --volume $PWD/nginx-config:/config:rw \
     --volume $PWD/nginx.conf:/config/nginx/nginx.conf:ro \
     --volume $PWD/site-confs:/config/nginx/site-confs:ro \
     --publish 443:443 \
@@ -38,7 +39,7 @@ up () {
     --restart unless-stopped \
     --env-file $PWD/ocvt-site.env \
     --network ocvt-net \
-    ocvt/ocvt-site:1.0.10
+    ocvt/ocvt-site:1.0.11
 
   docker system prune -af
 }

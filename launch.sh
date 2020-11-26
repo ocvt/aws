@@ -39,7 +39,7 @@ up () {
     --restart unless-stopped \
     --env-file $PWD/ocvt-site.env \
     --network ocvt-net \
-    ocvt/ocvt-site:1.0.11
+    ocvt/ocvt-site:1.0.13
 
   docker system prune -af
 }

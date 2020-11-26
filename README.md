@@ -55,7 +55,7 @@ Host pineswamp
 1. Run `ansible-playbook ansible/main.yml -i ansible/hosts.cfg` to install required packages on the host
 1. Clone this repository to the server
 1. Set the environment variables
-1. Run `./launch up` to start the services. Launches nginx (proxy and image cache), the html site, and the api
+1. Run `./launch up` to start the services. Launches nginx (proxy and image cache), the html site, and the api. Nginx auto-creates the local `nginx-config` directory for persistent TLS certs.
 
 ### Docker Hub / Github Config to manage images
 

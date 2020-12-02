@@ -31,7 +31,7 @@ up () {
     --env-file $PWD/dolabra.env \
     --volume $PWD/data:/go/src/app/data:rw \
     --network ocvt-net \
-    ocvt/dolabra:1.0.9
+    ghcr.io/ocvt/dolabra:1.2.1
   
   docker run \
     --name ocvt-site \
@@ -39,13 +39,13 @@ up () {
     --restart unless-stopped \
     --env-file $PWD/ocvt-site.env \
     --network ocvt-net \
-    ocvt/ocvt-site:1.0.13
+    ghcr.io/ocvt/ocvt-site:1.2.2
 
   docker system prune -af
 }
 
 down () {
-  docker stop nginx ocvt-api ocvt-site
+  docker stop nginx ocvt-api ocvt-site || true
   docker rm -f nginx ocvt-api ocvt-site
 }
 

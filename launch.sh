@@ -31,7 +31,7 @@ up () {
     --env-file $PWD/dolabra.env \
     --volume $PWD/data:/go/src/app/data:rw \
     --network ocvt-net \
-    ghcr.io/ocvt/dolabra:1.2.4
+    ghcr.io/ocvt/dolabra:1.2.5
   
   docker run \
     --name ocvt-site \

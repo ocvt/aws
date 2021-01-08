@@ -25,7 +25,7 @@ OCVT's deployment configuration, mainly centered around docker.
 1. Create an Internet Gateway named `ocvt-igw` associated with the VPC from step 1
 1. Add rules to the route table so that `0.0.0.0/0` and `::0/0` are both routed to the Internet Gateway from step 4
 1. Create a new security group named `ocvt-sg` allowing SSH, HTTP, and HTTPS traffic from `0.0.0.0/0` and `::0/0`
-1. Finally, create a new `t3a.micro` instance with Amazon Linux 2, ensuring the security group from step 6 is used, public IPs are assigned, and the `ocvt-dev-key` SSH key name is used
+1. Finally, create a new `t3a.nano` instance with Amazon Linux 2, ensuring the security group from step 6 is used, public IPs are assigned, and the `ocvt-dev-key` SSH key name is used
 1. Create a new Elastic IP named `ocvt-eip` and associate it with the instance created in step 7
 1. Create an A & AAAA record for pineswamp.ocvt.club and ocvt.club pointing to that instance, and create CNAME records for www.ocvt.club, api.ocvt.club, and api-dev.ozmo.club pointing to pineswamp.ocvt.club
 1. Ensure IPv6 is working: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-migrate-ipv6.html#ipv6-dhcpv6-amazon-linux

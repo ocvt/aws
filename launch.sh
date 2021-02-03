@@ -31,7 +31,7 @@ up () {
     --env-file $PWD/dolabra.env \
     --volume $PWD/data:/go/src/app/data:rw \
     --network ocvt-net \
-    ghcr.io/ocvt/dolabra:1.2.9
+    ghcr.io/ocvt/dolabra:1.2.10
   
   docker run \
     --name ocvt-site \
@@ -39,7 +39,7 @@ up () {
     --restart unless-stopped \
     --env-file $PWD/ocvt-site.env \
     --network ocvt-net \
-    ghcr.io/ocvt/ocvt-site:1.3.5
+    ghcr.io/ocvt/ocvt-site:1.3.6
 
   docker system prune -af
 }

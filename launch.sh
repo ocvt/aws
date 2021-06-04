@@ -36,10 +36,11 @@ up () {
   docker run \
     --name ocvt-site \
     --detach \
+    --env TZ=US/Eastern \
     --restart unless-stopped \
     --env-file $PWD/ocvt-site.env \
     --network ocvt-net \
-    ghcr.io/ocvt/ocvt-site:1.3.10
+    ghcr.io/ocvt/ocvt-site:1.3.11
 
   docker system prune -af
 }

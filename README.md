@@ -56,6 +56,7 @@ Host pineswamp
 1. Clone this repository to the server
 1. Set the environment variables
 1. Run `./launch up` to start the services. Launches nginx (proxy and image cache), the html site, and the api. Nginx auto-creates the local `nginx-config` directory for persistent TLS certs.
+1. Create a weekly cronjob to run `pushd /home/ec2-user/aws && ./launch.sh down && ./launch.sh up && popd` due to a small memory leak in ocvt-api.
 
 ### Docker Hub / Github Config to manage images
 

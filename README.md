@@ -25,7 +25,7 @@ OCVT's deployment configuration, mainly centered around docker.
 1. Create an Internet Gateway named `ocvt-igw` associated with the VPC from step 1
 1. Add rules to the route table so that `0.0.0.0/0` and `::0/0` are both routed to the Internet Gateway from step 4
 1. Create a new security group named `ocvt-sg` allowing SSH, HTTP, and HTTPS traffic from `0.0.0.0/0` and `::0/0`
-1. Finally, create a new `t3a.nano` instance with Amazon Linux 2, ensuring the security group from step 6 is used, public IPs are assigned, and the `ocvt-dev-key` SSH key name is used
+1. Finally, create a new `t3a.small` instance with Amazon Linux 2, ensuring the security group from step 6 is used, public IPs are assigned, and the `ocvt-dev-key` SSH key name is used
 1. Create a new Elastic IP named `ocvt-eip` and associate it with the instance created in step 7
 1. Create an A & AAAA record for pineswamp.ocvt.club and ocvt.club pointing to that instance, and create CNAME records for www.ocvt.club, api.ocvt.club, and api-dev.ozmo.club pointing to pineswamp.ocvt.club
 1. Ensure IPv6 is working: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-migrate-ipv6.html#ipv6-dhcpv6-amazon-linux
@@ -37,7 +37,6 @@ Create the following DNS records:
 
 - @, pineswamp  -> A & AAAA -> IP of AWS instance
 - api, www -> CNAME -> pineswamp.ocvt.club.
-- status -> CNAME -> stats.uptimerobot.com.
 
 *Note*: If the EC2 instance is terminated for whatever reason, the IPv6 address will have to be set again because AWS does not support IPv6 elastic IPs.
 
@@ -58,10 +57,9 @@ Host pineswamp
 1. Run `./launch up` to start the services. Launches nginx (proxy and image cache), the html site, and the api. Nginx auto-creates the local `nginx-config` directory for persistent TLS certs.
 1. Create a weekly cronjob to run `pushd /home/ec2-user/aws && ./launch.sh down && ./launch.sh up && popd` due to a small memory leak in ocvt-api.
 
-### Docker Hub / Github Config to manage images
+### Github Config to manage images
 
-- New docker images for ocvt/ocvt-site and ocvt/dolabra are created on each new release via Github Actions (look at the workflow file)
-- Docker Hub username & password is stored in GH Secrets
+- New container images for ocvt/ocvt-site and ocvt/dolabra are created on each new release via Github Actions (look at the workflow file) and stored in GitHub packages
 
 ### Uptime Robot
 

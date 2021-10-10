@@ -20,7 +20,7 @@ up () {
     --volume $PWD/site-confs:/config/nginx/site-confs:ro \
     --publish 443:443 \
     --publish 80:80 \
-    --add-host=host.docker.internal:$(ip -4 addr show docker0 | grep -Po 'inet \K[\d.]+') \
+    --add-host=host.docker.internal:$(/usr/sbin/ip -4 addr show docker0 | grep -Po 'inet \K[\d.]+') \
     --network ocvt-net \
     linuxserver/swag:1.7.0-ls7
   
@@ -31,7 +31,7 @@ up () {
     --env-file $PWD/dolabra.env \
     --volume $PWD/data:/go/src/app/data:rw \
     --network ocvt-net \
-    ghcr.io/ocvt/dolabra:1.2.12
+    ghcr.io/ocvt/dolabra:1.2.16
   
   docker run \
     --name ocvt-site \
@@ -40,7 +40,7 @@ up () {
     --restart unless-stopped \
     --env-file $PWD/ocvt-site.env \
     --network ocvt-net \
-    ghcr.io/ocvt/ocvt-site:1.3.27
+    ghcr.io/ocvt/ocvt-site:1.4.3
 
   docker system prune -af
 }

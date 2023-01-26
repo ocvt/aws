@@ -40,7 +40,7 @@ up () {
     --restart unless-stopped \
     --env-file $PWD/ocvt-site.env \
     --network ocvt-net \
-    ghcr.io/ocvt/ocvt-site:1.4.3
+    ghcr.io/ocvt/ocvt-site:1.5.0
 
   docker system prune -af
 }
